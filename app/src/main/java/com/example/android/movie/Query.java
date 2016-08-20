@@ -1,5 +1,7 @@
 package com.example.android.movie;
 
+
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -21,7 +23,7 @@ import java.util.List;
 /**
  * Created by Shimaa on 8/17/2016.
  */
-public abstract class Query {
+public abstract class Query extends Fragment {
 
     /** Tag for the log messages */
     public static final String LOG_TAG = Query.class.getSimpleName();
@@ -130,6 +132,6 @@ public abstract class Query {
      * Return a list of {@link Movie} objects that has been built up from
      * parsing the given JSON response.
      */
-    public abstract  ArrayList<Movie> extractFeatureFromJson(String movieJSON);
+    public abstract ArrayList<Movie> extractFeatureFromJson(String movieJSON);
 
 }
