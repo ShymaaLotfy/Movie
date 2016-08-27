@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -47,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
         //set the data adapter
         ListView movieListView = (ListView) findViewById(R.id.outerPopularList);
-        popularadapter = new MovieAdapter(this,new ArrayList<Movie>());
+        popularadapter = new MovieAdapter(this,result);
         movieListView.setAdapter(popularadapter);
 
         movieListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                       
                         // Find the view pager that will allow the user to swipe between fragments
                         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 

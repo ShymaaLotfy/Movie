@@ -37,6 +37,9 @@ public class PopularFragment extends Fragment {
             e.printStackTrace();
         }
 
+        if (container != null) {
+            container.removeAllViews();
+        }
         //data adapter
         ListView movieListView = (ListView) rootView.findViewById(R.id.list);
         adapter = new MovieAdapter(this.getActivity(),result);
