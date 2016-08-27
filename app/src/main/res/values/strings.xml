@@ -9,9 +9,11 @@
     <string name="popular"></string>
 
     <string-array name="navigation_drawer_items_array">
-        <item>Now Playing</item>
-        <item>Top Rated</item>
         <item>Popular</item>
+        <item>Top Rated</item>
+        <item>Now Playing</item>
+        <item>Upcoming</item>
+
 
     </string-array>
 

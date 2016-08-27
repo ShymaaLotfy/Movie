@@ -1,8 +1,8 @@
 package com.example.android.movie;
 
 import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +11,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-
 /**
- * Created by Shimaa on 8/20/2016.
+ * Created by Shimaa on 8/27/2016.
  */
-public class NowPlayingFragment extends Fragment{
+public class PopularFragment extends Fragment {
 
     public MovieAdapter adapter = null ;
 
@@ -30,7 +29,7 @@ public class NowPlayingFragment extends Fragment{
         ArrayList<Movie> result=null;
 
         try {
-            result =task.execute("http://api.themoviedb.org/3/movie/now_playing?api_key=9d439968a128f2c3596337f5aaa636cc").get();
+            result =task.execute("http://api.themoviedb.org/3/movie/popular?api_key=9d439968a128f2c3596337f5aaa636cc").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -45,6 +44,7 @@ public class NowPlayingFragment extends Fragment{
         return rootView;
 
     }
+
 
 
     private class QueryAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>> {
@@ -87,4 +87,3 @@ public class NowPlayingFragment extends Fragment{
         }
     }
 }
-

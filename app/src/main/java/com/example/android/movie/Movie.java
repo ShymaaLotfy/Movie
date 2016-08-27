@@ -6,13 +6,16 @@ package com.example.android.movie;
 public class Movie {
 
     private String mtitle ;
-    private  int mId ;
+    private  String mOriginalTitle ;
+    private int mPosterResourceId;
 
-    public Movie(String title, int id){
+    public Movie(String title, String  originalTitle  ){
         mtitle = title ;
-        mId = id ;
+        mOriginalTitle = originalTitle ;
+       // mPosterResourceId = posterResourceId;
     }
 
     public String getMtitle(){return  mtitle;}
-    public int getmId(){return mId;}
+    public String getmOriginalTitle(){return mOriginalTitle;}
+    public int getmPosterResourceId(){return mPosterResourceId;}
 }
