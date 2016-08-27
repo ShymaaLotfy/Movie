@@ -19,7 +19,9 @@ import java.util.concurrent.ExecutionException;
  */
 public class NowPlayingFragment extends Fragment{
 
-    public MovieAdapter adapter = null ;
+    private MovieAdapter adapter = null ;
+    private ArrayList<Movie> result=null;
+    private String nowPlayingUrl ="http://api.themoviedb.org/3/movie/now_playing?api_key=9d439968a128f2c3596337f5aaa636cc";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,10 +31,9 @@ public class NowPlayingFragment extends Fragment{
 
         // Start the AsyncTask to fetch the earthquake data
         QueryAsyncTask task = new QueryAsyncTask();
-        ArrayList<Movie> result=null;
 
         try {
-            result =task.execute("http://api.themoviedb.org/3/movie/now_playing?api_key=9d439968a128f2c3596337f5aaa636cc").get();
+            result =task.execute(nowPlayingUrl).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -41,7 +42,7 @@ public class NowPlayingFragment extends Fragment{
 
         //data adapter
         ListView movieListView = (ListView) rootView.findViewById(R.id.list);
-        adapter = new MovieAdapter(this.getActivity(),new ArrayList<Movie>());
+        adapter = new MovieAdapter(this.getActivity(),result);
         movieListView.setAdapter(adapter);
 
         movieListView.setOnItemClickListener(
@@ -67,45 +68,5 @@ public class NowPlayingFragment extends Fragment{
 
     }
 
-
-    private class QueryAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>> {
-
-        /**
-         * This method runs on a background thread and performs the network request.
-         * We should not update the UI from a background thread, so we return a list of
-         * {@link Movie}s as the result.
-         */
-        @Override
-        protected ArrayList<Movie> doInBackground(String... urls) {
-            // Don't perform the request if there are no URLs, or the first URL is null.
-            if (urls.length < 1 || urls[0] == null) {
-                return null;
-            }
-
-            Query query = new Query() ;
-            ArrayList<Movie> result = query.fetchEarthquakeData(urls[0]);
-            return result;
-        }
-
-        /**
-         * This method runs on the main UI thread after the background work has been
-         * completed. This method receives as input, the return value from the doInBackground()
-         * method. First we clear out the adapter, to get rid of moviedata from a previous
-         * query. Then we update the adapter with the new list of movies,
-         * which will trigger the ListView to re-populate its list items.
-         */
-        @Override
-        protected void onPostExecute(ArrayList<Movie> data) {
-            // Clear the adapter of previous movie data
-
-            adapter.clear();
-
-            // If there is a valid list of {@link movie}s, then add them to the adapter's
-            // data set. This will trigger the ListView to update.
-            if (data != null && !data.isEmpty()) {
-                adapter.addAll(data);
-            }
-        }
-    }
 }
 
