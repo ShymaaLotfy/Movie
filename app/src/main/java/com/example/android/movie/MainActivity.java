@@ -50,6 +50,25 @@ public class MainActivity extends AppCompatActivity {
         popularadapter = new MovieAdapter(this,new ArrayList<Movie>());
         movieListView.setAdapter(popularadapter);
 
+        movieListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        // Find the view pager that will allow the user to swipe between fragments
+                        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+                        // Create an adapter that knows which fragment should be shown on each page
+                        SimpleFragmentPageAdapter adapter = new SimpleFragmentPageAdapter(getSupportFragmentManager());
+
+                        // Set the adapter onto the view pager
+                        viewPager.setAdapter(adapter);
+
+                    }
+                }
+
+        );
+
         // Navigation Drawer list
         mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
         mDrawerLayout = (DrawerLayout)  findViewById(R.id.drawer_layout);

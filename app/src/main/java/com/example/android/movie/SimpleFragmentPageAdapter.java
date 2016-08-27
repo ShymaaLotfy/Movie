@@ -14,20 +14,18 @@ public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        //if (position == 0) {
-          //  return new MovieFragment();
-        //} else if (position == 1){
-            //return new CastFragment();
-        //} else if (position == 2) {
-          //  return new CrewFragment();
-        //}else  {
-          //  return new SimilarMoviesFragment();
+        if (position == 0) {
+            return new MovieFragment();
+        } else if (position == 1){
+            return new CastFragment();
+        } else  {
+            return new SimilarMoviesFragment();
+        }
 
-        return null;
     }
 
     @Override
     public int getCount() {
-        return 4 ;
+        return 3;
     }
 }
