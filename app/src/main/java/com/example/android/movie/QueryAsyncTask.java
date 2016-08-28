@@ -23,8 +23,8 @@ public class QueryAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>> {
             return null;
         }
 
-        Query query = new Query() ;
-        ArrayList<Movie> result = query.fetchEarthquakeData(urls[0]);
+        Query query = new GetMovieListQuery() ;
+        ArrayList<Movie> result = query.fetchMovieList(urls[0]);
         return result;
     }
 

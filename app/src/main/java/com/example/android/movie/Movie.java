@@ -7,15 +7,18 @@ public class Movie {
 
     private String mtitle ;
     private  String mOriginalTitle ;
-    private int mPosterResourceId;
+    private String mPosterUrl;
+    private int mId;
 
-    public Movie(String title, String  originalTitle  ){
+    public Movie(int id,String title, String  originalTitle, String posterUrl  ){
+        mId = id;
         mtitle = title ;
         mOriginalTitle = originalTitle ;
-       // mPosterResourceId = posterResourceId;
+        mPosterUrl = posterUrl;
     }
 
+    public int getmId(){return mId;}
     public String getMtitle(){return  mtitle;}
     public String getmOriginalTitle(){return mOriginalTitle;}
-    public int getmPosterResourceId(){return mPosterResourceId;}
+    public String getmPosterUrl(){return mPosterUrl;}
 }

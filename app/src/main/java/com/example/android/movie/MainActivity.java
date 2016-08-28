@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                       
+
                         // Find the view pager that will allow the user to swipe between fragments
                         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -118,44 +118,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class QueryAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>> {
-
-        /**
-         * This method runs on a background thread and performs the network request.
-         * We should not update the UI from a background thread, so we return a list of
-         * {@link Movie}s as the result.
-         */
-        @Override
-        protected ArrayList<Movie> doInBackground(String... urls) {
-            // Don't perform the request if there are no URLs, or the first URL is null.
-            if (urls.length < 1 || urls[0] == null) {
-                return null;
-            }
-
-            Query query = new Query() ;
-            ArrayList<Movie> result = query.fetchEarthquakeData(urls[0]);
-            return result;
-        }
-
-        /**
-         * This method runs on the main UI thread after the background work has been
-         * completed. This method receives as input, the return value from the doInBackground()
-         * method. First we clear out the adapter, to get rid of moviedata from a previous
-         * query. Then we update the adapter with the new list of movies,
-         * which will trigger the ListView to re-populate its list items.
-         */
-        @Override
-        protected void onPostExecute(ArrayList<Movie> data) {
-            // Clear the adapter of previous movie data
-
-            popularadapter.clear();
-
-            // If there is a valid list of {@link movie}s, then add them to the adapter's
-            // data set. This will trigger the ListView to update.
-            if (data != null && !data.isEmpty()) {
-                popularadapter.addAll(data);
-            }
-        }
-    }
 
 }
