@@ -1,10 +1,8 @@
 package com.example.android.movie.Fragments;
 
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.style.IconMarginSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.movie.Models.Movie;
-import com.example.android.movie.Networking.ImageAsyncTask;
 import com.example.android.movie.R;
-
-import java.util.concurrent.ExecutionException;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Shimaa on 8/30/2016.
@@ -41,14 +37,10 @@ public class MovieDetailsFragment extends Fragment {
         title.setText(movie.title);
         overView.setText(movie.overview);
         releaseDate.setText(movie.releaseDate);
+        Picasso.with(getContext())
+                .load(movie.thumUrl())
+                .into(poster);
 
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                poster.setImageBitmap(bitmap);
-            }
-        };
-        getImageBitmap.execute(movie.thumUrl());
 
         return content;
 

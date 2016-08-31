@@ -1,6 +1,5 @@
 package com.example.android.movie.Adapters;
 
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.movie.Models.Actors;
-import com.example.android.movie.Networking.ImageAsyncTask;
 import com.example.android.movie.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Shimaa on 8/30/2016.
@@ -63,14 +61,9 @@ public class CastAdapter extends BaseAdapter {
 
         final ImageView poster = (ImageView)convertView.findViewById(R.id.profile);
 
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                poster.setImageBitmap(bitmap);
-            }
-        };
-
-        getImageBitmap.execute(currentActor.thumUrl());
+        Picasso.with(convertView.getContext())
+                .load(currentActor.thumUrl())
+                .into(poster);
 
         return convertView;
     }

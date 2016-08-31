@@ -1,23 +1,18 @@
 package com.example.android.movie.Adapters;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.movie.Models.Movie;
-import com.example.android.movie.Networking.ImageAsyncTask;
 import com.example.android.movie.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Shimaa on 8/17/2016.
@@ -65,13 +60,10 @@ public class MovieAdapter extends BaseAdapter {
 
         final  ImageView poster = (ImageView)convertView.findViewById(R.id.moviePoster);
 
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                poster.setImageBitmap(bitmap);
-            }
-        };
-        getImageBitmap.execute(currentMovie.thumUrl());
+        Picasso.with(convertView.getContext())
+                .load(currentMovie.thumUrl())
+                .into(poster);
+
 
         return convertView;
     }

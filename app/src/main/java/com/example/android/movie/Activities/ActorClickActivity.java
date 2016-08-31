@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.BaseAdapter;
 
 import com.example.android.movie.Fragments.ActorDetailsFragment;
+import com.example.android.movie.Fragments.ActorsFragment;
 import com.example.android.movie.Fragments.CastFragment;
 import com.example.android.movie.Fragments.MovieDetailsFragment;
 import com.example.android.movie.Fragments.MovieFragment;
@@ -17,6 +19,8 @@ import com.example.android.movie.Models.Actors;
 import com.example.android.movie.Models.Movie;
 import com.example.android.movie.Networking.Urls;
 import com.example.android.movie.R;
+
+import java.io.Serializable;
 
 /**
  * Created by Shimaa on 8/31/2016.
@@ -61,7 +65,12 @@ public class ActorClickActivity extends AppCompatActivity {
                 bundle.putSerializable("Actor",clickedActor);
                 f.setArguments(bundle);
             }
-
+//            else {
+//                f = new MovieFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("Actor", (Serializable) clickedActor.knownFor);
+//                f.setArguments(bundle);
+//            }
 
             return f;
 

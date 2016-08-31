@@ -1,6 +1,5 @@
 package com.example.android.movie.Fragments;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.movie.Models.Actors;
-import com.example.android.movie.Models.Movie;
-import com.example.android.movie.Networking.ImageAsyncTask;
 import com.example.android.movie.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Shimaa on 8/31/2016.
@@ -39,14 +37,9 @@ public class ActorDetailsFragment extends Fragment{
         popularity.setText("Popularity : " + actor.popularity);
 
 
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                poster.setImageBitmap(bitmap);
-            }
-        };
-        getImageBitmap.execute(actor.thumUrl());
-
+        Picasso.with(getContext())
+                .load(actor.thumUrl())
+                .into(poster);
         return content;
 
     }
