@@ -1,4 +1,4 @@
-package com.example.android.movie;
+package com.example.android.movie.Networking;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
