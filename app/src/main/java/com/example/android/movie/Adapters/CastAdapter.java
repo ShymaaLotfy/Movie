@@ -61,17 +61,16 @@ public class CastAdapter extends BaseAdapter {
         TextView character = (TextView)convertView.findViewById(R.id.character);
         character.setText("Character : " + currentActor.character);
 
-        ImageView poster = (ImageView)convertView.findViewById(R.id.profile);
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() ;
-        try {
-            Bitmap bitmap = getImageBitmap.execute(currentActor.thumUrl()).get();
-            poster.setImageBitmap(bitmap);
+        final ImageView poster = (ImageView)convertView.findViewById(R.id.profile);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
+            @Override
+            protected void onPostExecute(Bitmap bitmap) {
+                poster.setImageBitmap(bitmap);
+            }
+        };
+
+        getImageBitmap.execute(currentActor.thumUrl());
 
         return convertView;
     }

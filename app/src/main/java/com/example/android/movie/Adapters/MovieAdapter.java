@@ -63,17 +63,15 @@ public class MovieAdapter extends BaseAdapter {
         title.setText(currentMovie.title);
 
 
-        ImageView poster = (ImageView)convertView.findViewById(R.id.moviePoster);
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() ;
-        try {
-            Bitmap bitmap = getImageBitmap.execute(currentMovie.thumUrl()).get();
-            poster.setImageBitmap(bitmap);
+        final  ImageView poster = (ImageView)convertView.findViewById(R.id.moviePoster);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
+            @Override
+            protected void onPostExecute(Bitmap bitmap) {
+                poster.setImageBitmap(bitmap);
+            }
+        };
+        getImageBitmap.execute(currentMovie.thumUrl());
 
         return convertView;
     }

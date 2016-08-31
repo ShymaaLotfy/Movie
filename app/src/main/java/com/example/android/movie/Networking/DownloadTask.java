@@ -32,7 +32,7 @@ public abstract class DownloadTask<V> extends AsyncTask<String,Void,List<V>> {
                 String jsonString = readResponse(connection.getInputStream());
                 JSONObject object = new JSONObject(jsonString);
                 JSONArray results = object.getJSONArray("results");
-                for(int i=0 ; i<20; i++){
+                for(int i=0 ; i< results.length(); i++){
                     V v = objectFromJson(results.getJSONObject(i)) ;
                     resultList.add(v);
                 }

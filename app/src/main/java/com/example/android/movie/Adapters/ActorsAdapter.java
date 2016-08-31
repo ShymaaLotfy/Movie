@@ -62,17 +62,15 @@ public class ActorsAdapter extends BaseAdapter {
         TextView popularity = (TextView)convertView.findViewById(R.id.popularity);
         popularity.setText("Popularity : " + currentActor.popularity);
 
-        ImageView poster = (ImageView)convertView.findViewById(R.id.profile);
-        ImageAsyncTask getImageBitmap = new ImageAsyncTask() ;
-        try {
-            Bitmap bitmap = getImageBitmap.execute(currentActor.thumUrl()).get();
-            poster.setImageBitmap(bitmap);
+        final  ImageView poster = (ImageView)convertView.findViewById(R.id.profile);
+        ImageAsyncTask getImageBitmap = new ImageAsyncTask() {
+            @Override
+            protected void onPostExecute(Bitmap bitmap) {
+                poster.setImageBitmap(bitmap);
+            }
+        };
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        getImageBitmap.execute(currentActor.thumUrl());
 
         return convertView;
     }
